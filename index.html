@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the Number</title>
+<style>
+    
+
+        .flex-container {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap; 
+            gap: 60px; 
+            padding: 20px; 
+            
+        }
+
+        .flex-item {
+            flex: 1 0 20px; 
+            background-color: #ffffff; 
+            padding: 1%; 
+            text-align: center; 
+            align-content: center;
+            
+        }
+
+       
+   
+</style>
+</head>
+
+<body>
+
+    
+    <!-- A div to create flexbox -->
+    <div class="flex-container">
+        <!-- flexbox items -->
+        <div class="flex-item"> <!-- h2 header -->
+            <h2  style="margin-left: 90px; margin-right: 90px; background-color: cadetblue; border-radius: 7%; "><span style="color: rgb(255, 255, 255);">Welcome to </span><br>Guess the number!</h2><br>
+        </div>
+        <div class="flex-item"> <!-- input 1  -->
+            <input  style="margin-top: 5%;" type="number" id="gtn" placeholder="Add Your Number :"><br></div>
+        <div class="flex-item"> <!-- button 1 -->
+            <button onclick="guessTheNumber();"  style="margin-top:10px; background-color:rgb(74, 221, 38); border-color: rgb(22, 192, 107); border-radius: 10%; width: 30%; ">Guess</button>
+        </div>
+        <div class="flex-item"> <!-- button 1 -->
+            <button onclick="hack();" id="hackMe" style="margin-top:5px; background-color:rgb(231, 22, 15); border-color: rgba(0, 0, 0, 0.479); border-radius: 10%; width: 30%; ">Hack</button>
+        </div>
+    </div>
+        
+
+<script>
+    // That is the function to do the random number input
+    function guessTheNumber() {
+        
+        var randomNumber = parseInt(Math.random()*10); 
+        var userNumber   = parseInt(document.getElementById("gtn").value);
+        var comparison   = (randomNumber == userNumber) ? 'Success' : 'Failure';
+        
+        alert("Random: " + randomNumber + " Guess: " + userNumber + " " + comparison);
+
+        location.reload();
+    }
+// And that is the function that enables the godmode hack
+function hack() {
+        var username = prompt("Enter username:");
+        var password = prompt("Enter password:");
+        
+        // Check if username and password are correct
+        if (username === "godmode" && password === "1234") {
+            // Override the random number check
+            alert("Hack successful! You are now in 'God mode'.");
+            
+            // Modify the guessTheNumber function to always show success
+            window.guessTheNumber = function() {
+                var userNumber = parseInt(document.getElementById("gtn").value);
+                alert("Random: " + userNumber + " Success");
+                location.reload();
+            };
+            // Change button text to indicate god mode
+            document.getElementById("hackMe").innerText = "Hack (God Mode 'on')";
+        } else {
+            alert("Invalid credentials. Hack failed.");
+        }
+    }
+     
+
+
+
+</script>
+</body>
+</html>
